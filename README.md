@@ -20,9 +20,6 @@ Internal Storage | 256 GB (UFS 2.1)
 
 ![Tecno Camon 20 Pro 5G](https://cdn-files.kimovil.com/default/0008/73/thumb_772302_default_big.jpg)
 
-
-!(a)[https://fdn2.gsmarena.com/vv/pics/tecno/tecno-camon20-pro-5g-1.jpg]
-
 ### Status
 
 The tester only install `boot-CK8n-20230803.img` file to know if working.
