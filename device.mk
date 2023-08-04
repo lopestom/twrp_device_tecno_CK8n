@@ -1,5 +1,5 @@
-# Copyright (C) 2023 The Android Open Source Project
-# Copyright (C) 2023 TeamWin Recovery Project
+#
+# Copyright (C) 2021 The TWRP Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,46 +14,34 @@
 # limitations under the License.
 #
 
-LOCAL_PATH := device/tecno/CK8n
+# API
+PRODUCT_SHIPPING_API_LEVEL := 30
 
-# Enable project quotas and casefolding for emulated storage without sdcardfs - SDCard replacement functionality
-$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
-
-# Dynamic Partitions
+# Dynamic
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# VNDK
-PRODUCT_TARGET_VNDK_VERSION := 31
+# Enable project quotas and casefolding for emulated storage without sdcardfs
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
-# API
-PRODUCT_SHIPPING_API_LEVEL := 31
-
-PRODUCT_PLATFORM := mt6893
-
-# VIRTUAL A/B
+# A/B
 ENABLE_VIRTUAL_AB := true
-# Virtual A/B OTA
 $(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota.mk)
 
+# A/B
 AB_OTA_UPDATER := true
-
-AB_OTA_PARTITIONS := \
+AB_OTA_PARTITIONS += \
     boot \
     dtbo \
-    lk \
-    product \
     system \
     system_ext \
+    product \
+    vendor \
     odm \
     vbmeta \
     vbmeta_system \
-    vbmeta_vendor \
-    vendor \
-    vendor_boot
+    vbmeta_vendor
 
-# Update engine
 PRODUCT_PACKAGES += \
-    checkpoint_gc \
     update_engine \
     update_engine_sideload \
     update_verifier
@@ -61,71 +49,25 @@ PRODUCT_PACKAGES += \
 AB_OTA_POSTINSTALL_CONFIG += \
     RUN_POSTINSTALL_system=true \
     POSTINSTALL_PATH_system=system/bin/mtk_plpath_utils \
-    FILESYSTEM_TYPE_system=erofs \
+    FILESYSTEM_TYPE_system=ext4 \
     POSTINSTALL_OPTIONAL_system=true
 
-AB_OTA_POSTINSTALL_CONFIG += \
-    RUN_POSTINSTALL_vendor=true \
-    POSTINSTALL_PATH_vendor=bin/checkpoint_gc \
-    FILESYSTEM_TYPE_vendor=erofs \
-    POSTINSTALL_OPTIONAL_vendor=true
-
-# Boot control HAL - Bootctrl
+# Boot control HAL
 PRODUCT_PACKAGES += \
-    android.hardware.boot@1.2-mtkimpl.recovery \
-    android.hardware.boot@1.2-mtkimpl \
-    android.hardware.boot@1.2-impl.recovery \
-    android.hardware.boot@1.2-impl \
-    android.hardware.boot@1.2-service
+    android.hardware.boot@1.2-impl.recovery
 
-PRODUCT_PACKAGES_DEBUG += \
-    bootctrl
-
-# fastbootd stuff
+# fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
-    android.hardware.fastboot@1.0-impl-mock.recovery \
     fastbootd
-
-PRODUCT_PACKAGES_DEBUG += \
-    update_engine_client
-
-# health Hal
-PRODUCT_PACKAGES += \
-    android.hardware.health@2.1-impl \
-    android.hardware.health@2.1-service
-
-# MTK PlPath Utils
-PRODUCT_PACKAGES += \
-    mtk_plpath_utils \
-    mtk_plpath_utils.recovery
-
-# Keystore
-PRODUCT_PACKAGES += \
-    android.system.keystore2
-
-# Keymint
-PRODUCT_PACKAGES += \
-    android.hardware.security.keymint \
-    android.hardware.security.secureclock \
-    android.hardware.security.sharedsecret
-
-# Drm
-PRODUCT_PACKAGES += \
-    android.hardware.drm@1.4
-
-# Keymaster
-PRODUCT_PACKAGES += \
-    android.hardware.keymaster@4.1
-
+    
 # Additional target Libraries
 TARGET_RECOVERY_DEVICE_MODULES += \
-    android.hardware.keymaster@4.1
+    libkeymaster4 \
+    libkeymaster41 \
+    libpuresoftkeymasterdevice
 
 TW_RECOVERY_ADDITIONAL_RELINK_LIBRARY_FILES += \
-    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.keymaster@4.1.so
-
-# libion & libxml2
-TARGET_RECOVERY_DEVICE_MODULES += libion
-
-RECOVERY_LIBRARY_SOURCE_FILES += $(TARGET_OUT_SHARED_LIBRARIES)/libion.so
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster4.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libkeymaster41.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libpuresoftkeymasterdevice.so

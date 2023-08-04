@@ -1,5 +1,5 @@
-# Copyright (C) 2023 The Android Open Source Project
-# Copyright (C) 2023 TeamWin Recovery Project
+#
+# Copyright (C) 2021 The TWRP Open Source Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -14,19 +14,17 @@
 # limitations under the License.
 #
 
-# Configure core_64_bit.mk
-$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
-
 # Inherit from those products. Most specific first.
+$(call inherit-product, $(SRC_TARGET_DIR)/product/core_64_bit.mk)
 $(call inherit-product, $(SRC_TARGET_DIR)/product/base.mk)
 
 # Installs gsi keys into ramdisk, to boot a developer GSI with verified boot.
 $(call inherit-product, $(SRC_TARGET_DIR)/product/gsi_keys.mk)
 
-# Inherit some common TWRP stuff.
+# Inherit from our custom product configuration
 $(call inherit-product, vendor/twrp/config/common.mk)
 
-# Device specific configs.
+# Device specific configs
 $(call inherit-product, device/tecno/CK8n/device.mk)
 
 ## Device identifier. This must come after all inclusions
@@ -35,4 +33,3 @@ PRODUCT_NAME := twrp_CK8n
 PRODUCT_BRAND := TECNO
 PRODUCT_MODEL := TECNO CK8n
 PRODUCT_MANUFACTURER := TECNO
-PRODUCT_RELEASE_NAME := Tecno Camon 20 Pro 5G
