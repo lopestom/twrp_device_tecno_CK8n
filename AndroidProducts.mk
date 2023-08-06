@@ -14,8 +14,9 @@
 # limitations under the License.
 #
 
-PRODUCT_MAKEFILES := \
-    $(LOCAL_DIR)/twrp_CK8n.mk
-    
-COMMON_LUNCH_CHOICES := \
-    twrp_CK8n-eng
+PRODUCT_MAKEFILES := $(LOCAL_DIR)/twrp_CK8n.mk
+
+COMMON_LUNCH_CHOICES := twrp_CK8n-eng
+#    twrp_TECNO-CK8n-eng \
+#    twrp_TECNO-CK8n-userdebug \
+#    twrp_TECNO-CK8n-user
