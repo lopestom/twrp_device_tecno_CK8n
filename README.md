@@ -1,6 +1,6 @@
 ### TWRP device tree for Tecno Camon 20 Pro 5G (CK8n) - MT6893 - A12_13
 
-This branch android-12.1 has ***encrypt/decrypt*** files and option to more test with that. 
+This branch android-12.1 **NOT** has ***encrypt/decrypt*** files and options to backup `\Data`.
 
 ### Firmware version: R3-Tecno-Camon-20-Pro-5G-CK8n-29.zip -- CK8n-H931ABC-T-GL-230607V1484 - ck8n_h931
 CK8n-H931A-T-RU-230607V1038 -- files from tester.
@@ -22,22 +22,22 @@ Internal Storage | 256 GB (UFS 2.1)
 
 ### Status
 
-The tester only install `boot-CK8n-20230803.img` file to know if working.
+The tester only install `boot-CK8n-2023mmdd.img` file to know if working.
 <details><summary>History - Click to open</summary>
 <p>
 Some tests was made:
 
-### First img Test
+### Third img Test
 
-* Initial DT: 2023-08-02
-   Compiled img file 2023-08-02 and tested in 2023-08-03
+* Initial DT: 2023-08-06
+   Compiled img file 2023-08-06 and tested in 2023-08-06
 
 - MT6893 - A12_13
   - Status: booted??
-  - [?] booted
+  - [X] booted
 
-   - boot-CK8n-20230803.img => Working?? Not working?
-  - [?] Working
+   - boot-CK8n-2023mmdd.img => Working?? Not working?
+  - [X] Working
 
 </p>
 </details>
@@ -45,9 +45,7 @@ Some tests was made:
 <details><summary>TWRP Pictures - Click to open</summary>
 <p>
 
-![Mount Storages](https://github.com/lopestom/) ![Data Decrypted](https://github.com/lopestom/g) ![Mount Partitions](https://github.com/lopestom/) ![Mount Partitions 1](https://github.com/lopestom/)
-![SS data_media](https://github.com/lopestom/)
-![Data Partition](https://github.com/lopestom/)
+![Mount Storages](https://github.com/lopestom/twrp_device_tecno_CK8n/releases/download/TECNO_Camon_20_Pro_5G-CK8n-agate/IMG_20230806_223501_resized.jpg) ![Mount Partitions](https://github.com/lopestom/twrp_device_tecno_CK8n/releases/download/TECNO_Camon_20_Pro_5G-CK8n-agate/IMG_20230806_223442_resized.jpg) ![Data Decrypted](https://github.com/lopestom/twrp_device_tecno_CK8n/releases/download/TECNO_Camon_20_Pro_5G-CK8n-agate/IMG_20230806_223516_resized.jpg) ![SS data_media](https://github.com/lopestom/twrp_device_tecno_CK8n/releases/download/TECNO_Camon_20_Pro_5G-CK8n-agate/IMG_20230806_223520_resized.jpg) ![Mount Partitions 1](https://github.com/lopestom/twrp_device_tecno_CK8n/releases/download/TECNO_Camon_20_Pro_5G-CK8n-agate/IMG_20230806_223448_resized.jpg) ![Data Partition](https://github.com/lopestom/twrp_device_tecno_CK8n/releases/download/TECNO_Camon_20_Pro_5G-CK8n-agate/IMG_20230806_223438_resized.jpg)
 
 </p>
 </details>
