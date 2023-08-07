@@ -1,14 +1,8 @@
 import /vendor/etc/init/tee.rc
 import /vendor/etc/init/trustonic.rc
-import /vendor/etc/init/android.hardware.gatekeeper@1.0-service.rc
-import /vendor/etc/init/android.hardware.keymaster@4.1-service.trustonic.rc
-import /vendor/etc/init/vendor.mediatek.hardware.paytrigger@1.0-service.rc
 
 on init
-    setprop sys.usb.configfs 1
-    setprop sys.usb.ffs.aio_compat 1
-    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw
-    setprop crypto.ready 1
+    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/vendor/lib64/hw:/system/lib64/hw
 
     # OTG
     mkdir /mnt/media_rw/usbotg 0700 media_rw media_rw
@@ -17,10 +11,6 @@ on init
     chmod 0666 /sys/devices/platform/odm/odm:tran_battery/OTG_CTL
 #SDD:add OTG feature for TESSCR-6368 by weike.xu 20210512 end
     write /sys/class/power_supply/usb/otg_switch 1
-
-    #BSP:add meta features XLQLBH-14 by wang.qin 20220412 start
-#    start vendor.tranhwinfo-1-0
-    #BSP:add meta features XLQLBH-14 by wang.qin 20220412 end
 
 on fs
     mkdir /mnt/vendor 0700 root root
@@ -80,17 +70,8 @@ service keystore /system/bin/keystore /tmp/misc/keystore
     disabled
     seclabel u:r:recovery:s0
 
-on property:crypto.ready=1
-    start vendor.keymaster-4-1-trustonic
-
-on property:vendor.sys.listener.registered=true
-    start vendor.keymaster-4-1-trustonic
-    start vendor.gatekeeper-1-0
-    
 on property:hwservicemanager.ready=true
-    write /proc/bootprof "MOBICORE: create /data/vendor/mcRegistry ++ (FBE encrypted)"
     start mobicore
-    write /proc/bootprof "MOBICORE: create /data/vendor/mcRegistry -- (FBE encrypted)"
     start vendor.keymaster-4-1-trustonic
     start vendor.gatekeeper-1-0
 
