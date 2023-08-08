@@ -19,9 +19,6 @@ on fs
     mkdir /mnt/vendor/persist/paytrigger 0700 root root
     mkdir /mnt/vendor/persist/mcRegistry 0700 root root
 
-on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
-    install_keyring
-
 on post-fs
     # Support A/B feature for EMMC and UFS boot region
     symlink /dev/block/sda /dev/block/mmcblk0boot0
@@ -48,6 +45,9 @@ on post-fs
     symlink /dev/block/mapper/pl_b /dev/block/by-name/preloader_raw_b
     symlink /dev/block/mapper/pl_a /dev/block/platform/bootdevice/by-name/preloader_raw_a
     symlink /dev/block/mapper/pl_b /dev/block/platform/bootdevice/by-name/preloader_raw_b
+
+on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
+    install_keyring
 
 service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
     class main
