@@ -7,8 +7,9 @@ ro.sys.usb.storage.type=mtp
 # identity
 Build.BRAND=MTK
 ro.soc.manufacturer=Mediatek
-ro.mediatek.version.branch=alps-mp-t0.mssi1
-ro.vendor.tran.version.release=CK8n-H931ABC-T-GL-230607V1484
+#ro.mediatek.version.branch=alps-mp-t0.mssi1
+#ro.vendor.tran.version.release=CK8n-H931ABC-T-GL-230607V1484
+#
 ro.vendor.mediatek.platform=MT6893
 ro.vendor.mtk_f2fs_enable=1
 ro.hardware.vulkan=mali
