@@ -85,14 +85,14 @@ jobs:
        PATH=~/bin:$PATH
        cd twrp
        export ALLOW_MISSING_DEPENDENCIES=true && source build/envsetup.sh &&lunch twrp_CK8n-eng && mka $TARGET -j$(nproc --all)
-       cp  out/target/product/CK8n/boot.img    out/target/product/CK8n/boot-TECNO-CK8n-A13_Enc1.img
+       cp  out/target/product/CK8n/boot.img    out/target/product/CK8n/boot-TECNO-CK8n-A13_Enc2.img
              
     - name: Release recovery image
       uses: softprops/action-gh-release@v1
       env:
        GITHUB_TOKEN: ${{ secrets.TEST }}
       with:
-       tag_name: TECNO_Camon_20_Pro_5G-CK8n-A13_Enc1
+       tag_name: TECNO_Camon_20_Pro_5G-CK8n-A13_Enc2
        name: TWRP37x_13_V1038
        files: | 
          twrp/out/target/product/CK8n/boot*.img
