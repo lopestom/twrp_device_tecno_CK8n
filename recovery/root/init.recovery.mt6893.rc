@@ -86,7 +86,6 @@ on property:crypto.ready=1
     start vendor.keymaster-4-1-trustonic
 
 on property:vendor.sys.listener.registered=true
-    start vendor.keymaster-4-1-trustonic
     start vendor.gatekeeper-1-0
     
 on property:hwservicemanager.ready=true
@@ -109,7 +108,8 @@ on property:ro.crypto.state=unencrypted
     stop vendor.keymaster-4-1-trustonic
     stop vendor.gatekeeper-1-0
 
-on property:twrp.decrypt.done=true
+on property:twrp.all.users.decrypted=true
+    setprop crypto.ready 0
     stop mobicore
     stop vendor.keymaster-4-1-trustonic
     stop vendor.gatekeeper-1-0
