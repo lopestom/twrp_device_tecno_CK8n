@@ -10,8 +10,6 @@ on init
     # Create a more standard /dev/block layout for our scripts
     symlink /dev/block/platform/bootdevice /dev/block/bootdevice
 
-    setprop crypto.ready 1
-
     # OTG
     mkdir /mnt/media_rw/usbotg 0700 media_rw media_rw
     mkdir /storage/usbotg 0700 root root
@@ -81,9 +79,6 @@ service keystore /system/bin/keystore /tmp/misc/keystore
     group root drmrpc readproc log
     disabled
     seclabel u:r:recovery:s0
-
-on property:crypto.ready=1
-    start vendor.keymaster-4-1-trustonic
 
 on property:vendor.sys.listener.registered=true
     start vendor.gatekeeper-1-0
