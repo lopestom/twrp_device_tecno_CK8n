@@ -1,15 +1,15 @@
 #fstab file by lopestom for Tecno Camon 20 Pro 5G CK8n-H931ABC-T-GL-230607V1484 - CK8n-H931A-T-RU-230607V1038
 
-/system		        erofs	 /dev/block/mapper/system            flags=backup=1;wipeingui;slotselect;logical;display="System_root"
-/vendor             erofs    /dev/block/mapper/vendor            flags=backup=1;wipeingui;logical;display="Vendor_a";slotselect
-/product            erofs    /dev/block/mapper/product           flags=backup=1;wipeingui;logical;display="Product_a";slotselect
-/system_ext         erofs    /dev/block/mapper/system_ext        flags=backup=1;wipeingui;logical;display="System_ext_a";slotselect
+#/system		        erofs	 /dev/block/mapper/system            flags=backup=1;wipeingui;slotselect;logical;display="System_root"
+#/vendor             erofs    /dev/block/mapper/vendor            flags=backup=1;wipeingui;logical;display="Vendor_a";slotselect
+#/product            erofs    /dev/block/mapper/product           flags=backup=1;wipeingui;logical;display="Product_a";slotselect
+#/system_ext         erofs    /dev/block/mapper/system_ext        flags=backup=1;wipeingui;logical;display="System_ext_a";slotselect
 
 # Images
-/system_image	    emmc  	 /dev/block/mapper/system_a          flags=backup=1;flashimg=1;slotselect;logical;display="System Image_a"
-/vendor_image	    emmc  	 /dev/block/mapper/vendor_a          flags=backup=1;flashimg=1;slotselect;logical;display="Vendor Image_a"
-/product_image	    emmc	 /dev/block/mapper/product_a         flags=backup=1;flashimg=1;slotselect;logical;display="Product Image_a"
-/system_ext_image   emmc     /dev/block/mapper/system_ext_a      flags=backup=1;flashimg=1;slotselect;logical;display="System_ext image_a"
+#/system_image	    emmc  	 /dev/block/mapper/system_a          flags=backup=1;flashimg=1;slotselect;logical;display="System Image_a"
+#/vendor_image	    emmc  	 /dev/block/mapper/vendor_a          flags=backup=1;flashimg=1;slotselect;logical;display="Vendor Image_a"
+#/product_image	    emmc	 /dev/block/mapper/product_a         flags=backup=1;flashimg=1;slotselect;logical;display="Product Image_a"
+#/system_ext_image   emmc     /dev/block/mapper/system_ext_a      flags=backup=1;flashimg=1;slotselect;logical;display="System_ext image_a"
 
 # Core Partitions
 /metadata           ext4      /dev/block/by-name/metadata              flags=backup=1;display="metadata"
