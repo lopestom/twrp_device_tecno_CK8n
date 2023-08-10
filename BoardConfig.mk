@@ -121,6 +121,7 @@ TARGET_COPY_OUT_VENDOR := vendor
 
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
+TARGET_RECOVERY_INITRC := $(DEVICE_PATH)/recovery/root/init.recovery.mt6893.rc
 
 # Recovery
 BOARD_HAS_LARGE_FILESYSTEM := true
