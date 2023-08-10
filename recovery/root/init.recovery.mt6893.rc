@@ -9,7 +9,14 @@ on init
     symlink /dev/block/platform/bootdevice /dev/block/bootdevice
 
 on fs
+on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
     install_keyring
+
+    mkdir /mnt/vendor 0700 root root
+    mkdir /mnt/vendor/persist 0700 root root
+    mount ext4 /dev/block/by-name/persist /mnt/vendor/persist
+    mkdir /mnt/vendor/persist/paytrigger 0700 root root
+    mkdir /mnt/vendor/persist/mcRegistry 0700 root root
 
 on post-fs
     # Support A/B feature for EMMC and UFS boot region
@@ -38,6 +45,16 @@ on post-fs
     symlink /dev/block/mapper/pl_a /dev/block/platform/bootdevice/by-name/preloader_raw_a
     symlink /dev/block/mapper/pl_b /dev/block/platform/bootdevice/by-name/preloader_raw_b
 
+    start mtk.plpath.utils.link
+
+service mtk.plpath.utils.link /system/bin/mtk_plpath_utils
+    class main
+    user root
+    group root system
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
 service keystore_auth /system/bin/keystore_auth
     oneshot
     user system
@@ -51,13 +68,13 @@ service keystore /system/bin/keystore /tmp/misc/keystore
     disabled
     seclabel u:r:recovery:s0
 
-service hal_cryptoeng_oplus /system/bin/vendor.oplus.hardware.cryptoeng@1.0-service
+service paytrigger_hal_service /system/bin/vendor.mediatek.hardware.paytrigger@1.0-service
     user root
-    group root input sdcard_rw sdcard_r
+    group root
     disabled
     seclabel u:r:recovery:s0
 
-service keymaster-4-1 /system/bin/android.hardware.keymaster@4.1-service.trustonic
+service vendor.keymaster-4-1-trustonic /system/bin/android.hardware.keymaster@4.1-service.trustonic
     user root
     group root drmrpc
     disabled
@@ -66,7 +83,7 @@ service keymaster-4-1 /system/bin/android.hardware.keymaster@4.1-service.truston
 service gatekeeperd /system/bin/gatekeeperd /data/misc/gatekeeper
     seclabel u:r:recovery:s0
 
-service gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service
+service vendor.gatekeeper-1-0 /system/bin/android.hardware.gatekeeper@1.0-service
     user root
     group root
     disabled
@@ -82,16 +99,36 @@ service keymaster_attestation-1-1 /system/bin/vendor.mediatek.hardware.keymaster
 
 on property:hwservicemanager.ready=true
     start keystore2
-    start hal_cryptoeng_oplus
     start mobicore
-    start keymaster-4-1
-    start gatekeeper-1-0
+    start paytrigger_hal_service
+    start vendor.keymaster-4-1-trustonic
+    start vendor.gatekeeper-1-0
     start keymaster_attestation-1-1
 
-on post-fs-data
-    mkdir /data/vendor_de 0770 system system
-    mkdir /data/vendor_de/0 0770 system system
-    mkdir /data/vendor_de/0/cryptoeng 0770 system system
+on property:vendor.sys.listener.registered=true
+    start vendor.gatekeeper-1-0
+    start vendor.keymaster-4-1-trustonic
+   
+on property:ro.crypto.state=unsupported
+    stop mobicore
+    stop paytrigger_hal_service
+    stop vendor.keymaster-4-1-trustonic
+    stop vendor.gatekeeper-1-0
+    stop keymaster_attestation-1-1
+
+on property:ro.crypto.state=unencrypted
+    stop mobicore
+    stop paytrigger_hal_service
+    stop vendor.keymaster-4-1-trustonic
+    stop vendor.gatekeeper-1-0
+    stop keymaster_attestation-1-1
+
+on property:twrp.all.users.decrypted=true
+    stop mobicore
+    stop paytrigger_hal_service
+    stop vendor.keymaster-4-1-trustonic
+    stop vendor.gatekeeper-1-0
+    stop keymaster_attestation-1-1
 
 on boot
     start health-hal-2-1
