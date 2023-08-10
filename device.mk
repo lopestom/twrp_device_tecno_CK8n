@@ -20,8 +20,8 @@ PRODUCT_SHIPPING_API_LEVEL := 31
 # Dynamic
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# Enable project quotas and casefolding for emulated storage without sdcardfs
-#$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
+# Enable project quotas and casefolding for emulated storage without sdcardfs - SDCard replacement functionality
+$(call inherit-product, $(SRC_TARGET_DIR)/product/emulated_storage.mk)
 
 # A/B
 ENABLE_VIRTUAL_AB := true
