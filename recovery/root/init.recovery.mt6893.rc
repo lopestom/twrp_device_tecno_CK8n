@@ -20,7 +20,6 @@ on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
 
 on post-fs
     # Support A/B feature for EMMC and UFS boot region
-    wait /dev/block/mmcblk0boot0 2
     symlink /dev/block/sda /dev/block/mmcblk0boot0
     symlink /dev/block/sdb /dev/block/mmcblk0boot1
     symlink /dev/block/mmcblk0boot0 /dev/block/platform/bootdevice/by-name/preloader_a
