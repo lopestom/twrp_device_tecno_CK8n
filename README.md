@@ -2,11 +2,12 @@
 
 This branch android-12.1 **NOT** has ***encrypt/decrypt*** files and options to backup `\Data`.
 
-### Firmware version: R3-Tecno-Camon-20-Pro-5G-CK8n-29.zip -- CK8n-H931ABC-T-GL-230607V1484 - ck8n_h931
-CK8n-H931A-T-RU-230607V1038 -- files from tester.
+### Firmware version:
+CK8n-H931A-T-RU-230815V1391.zip -- CK8n-H931A-T-RU-230815V1391 - ck8n_h931
+files from tester.
 
-- System A13 => CK8n-H931ABC-T-BASE-230607V1664 - FULL-64-ARMV82 - TECNO-T-64-ARMV82-230607V1264
-k6985v1.64_P4 -- k61v1.64.bsp_P7
+- System A13 => FULL-64-ARMV82 - TECNO-T-64-ARMV82-230815V1550 - k6985v1.64_P4 -- k61v1.64.bsp_P18
+CK8n-H931ABC-T-BASE-230815V2096
 
 ro.vendor.tran.hbm.thermal-patch: /devices/virtual/thermal/thermal_zone1
 
@@ -45,7 +46,7 @@ Some tests was made:
 <details><summary>TWRP Pictures - Click to open</summary>
 <p>
 
-![Mount Storages](https://github.com/lopestom/twrp_device_tecno_CK8n/releases/download/TECNO_Camon_20_Pro_5G-CK8n-agate/IMG_20230806_223501_resized.jpg) ![Mount Partitions](https://github.com/lopestom/twrp_device_tecno_CK8n/releases/download/TECNO_Camon_20_Pro_5G-CK8n-agate/IMG_20230806_223442_resized.jpg) ![Data Decrypted](https://github.com/lopestom/twrp_device_tecno_CK8n/releases/download/TECNO_Camon_20_Pro_5G-CK8n-agate/IMG_20230806_223516_resized.jpg) ![SS data_media](https://github.com/lopestom/twrp_device_tecno_CK8n/releases/download/TECNO_Camon_20_Pro_5G-CK8n-agate/IMG_20230806_223520_resized.jpg) ![Mount Partitions 1](https://github.com/lopestom/twrp_device_tecno_CK8n/releases/download/TECNO_Camon_20_Pro_5G-CK8n-agate/IMG_20230806_223448_resized.jpg) ![Data Partition](https://github.com/lopestom/twrp_device_tecno_CK8n/releases/download/TECNO_Camon_20_Pro_5G-CK8n-agate/IMG_20230806_223438_resized.jpg)
+![Mount Storages](https://github.com/lopestom/) ![Mount Partitions](https://github.com/lopestom/) ![Data Decrypted](https://github.com/lopestom/) ![SS data_media](https://github.com/lopestom/) ![Mount Partitions 1](https://github.com/lopestom/) ![Data Partition](https://github.com/lopestom/)
 
 </p>
 </details>
@@ -76,4 +77,3 @@ export USE_NINJA=false
 lunch twrp_CK8n-eng
 mka bootimage
 ```
-
