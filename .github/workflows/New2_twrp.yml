@@ -85,7 +85,7 @@ jobs:
        PATH=~/bin:$PATH
        cd twrp
        export ALLOW_MISSING_DEPENDENCIES=true && source build/envsetup.sh &&lunch twrp_CK8n-eng && mka $TARGET -j$(nproc --all)
-       cp  out/target/product/CK8n/boot.img    out/target/product/CK8n/booTWRP-TECNO_CK8n-A13-$(date +"%Y%m%d").img
+       cp  out/target/product/CK8n/boot.img    out/target/product/CK8n/boot_TWRP-TECNO_CK8n-A13-$(date +"%Y%m%d").img
              
     - name: Release recovery image
       uses: softprops/action-gh-release@v1
