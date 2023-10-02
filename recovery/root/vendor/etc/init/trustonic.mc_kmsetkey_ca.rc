@@ -1,6 +1,6 @@
-service trustonic_check_keybox_service /vendor/bin/kmsetkey_ca.trustonic -c
-    class late_start
-    user system
-    group system
+service trustonic_check_keybox_service /system/bin/kmsetkey_ca.trustonic -c
+    user root
+    group root
+    disabled
     oneshot
-
+    seclabel u:r:recovery:s0
